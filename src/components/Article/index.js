@@ -85,8 +85,8 @@ const Article = props => {
 	    }
 	    else if (e.keyCode === 38) { //up arrow
 	      	if (activeSuggestion === 0) {
-	      		if(currentInput == '') return;
 		        if(!isChanged) setUserInput(currentInput)
+		       	if(currentInput == '') return;
 		    } else if (activeSuggestion === filteredSuggestions.slice(0,3).length) {
 		    	setUserInput(currentInput)
 		    } else {

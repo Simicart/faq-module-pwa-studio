@@ -1,6 +1,7 @@
 import React, { Fragment,useState } from 'react';
 import SearchBox from '../SearchBox/searchbox'
 import CategoriesList from '../FaqsListContainer/CategoriesList'
+import Loader from '../Loader/Loader'
 import '@fortawesome/fontawesome-free/css/fontawesome.min.css'
 import { Helmet } from 'react-helmet';
 import { useHomePage } from '@faq/faq/src/talons/useHomePage'
@@ -23,6 +24,13 @@ const FAQ = props => {
 		categoriesError 
 	} = useCategoryList()
 	const categories = categoriesData.MpMageplazaFaqsCategoryList.items;
+
+	if(!homepageData || !homepageData.MpMageplazaFaqsGetConfig) {
+		return <Loader />;
+	}
+	if(!categoriesData || !categoriesData.MpMageplazaFaqsCategoryList) {
+		return <Loader />;
+	}
 
 	const [userInput, setUserInput] = useState('');
 	const [searchInput, setSearchInput] = useState('');	
