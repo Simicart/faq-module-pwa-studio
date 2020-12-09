@@ -55,5 +55,15 @@
     "prettier": "^1.9.2",
     "prettier-check": "^2.0.0",
     "react-test-renderer": "^16.14.0"
+  },
+  "dependencies": {
+    "react-social-sharing": "^3.3.0",
+    "@fortawesome/fontawesome-free": "^5.15.1",
+    "@fortawesome/fontawesome-svg-core": "^1.2.32",
+    "@fortawesome/free-brands-svg-icons": "^5.15.1",
+    "@fortawesome/free-regular-svg-icons": "^5.15.1",
+    "@fortawesome/free-solid-svg-icons": "^5.15.1",
+    "@fortawesome/react-fontawesome": "^0.1.12",
+    "react-helmet": "^6.1.0"
   }
 }
