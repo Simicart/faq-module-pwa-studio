@@ -54,6 +54,13 @@ const Article = props => {
 	const [currentInput, setCurrentInput] = useState('');
 	const [isChanged, setIsChanged] = useState(true); //determine if the current input is changed or not
 
+	useEffect ( () => {
+        if(inputEl.current){
+            window.addEventListener("resize", setInputWidth(inputEl.current.clientWidth));
+	    	return () => window.removeEventListener("resize", setInputWidth(inputEl.current.clientWidth));
+        }
+    });
+
 	if(!articleData || !articleData.MpMageplazaFaqsGetArticles) {
 		return <Loader />;
 	}
@@ -131,14 +138,6 @@ const Article = props => {
 	    setShowSuggestions(false)
 	    setUserInput(e.currentTarget.innerText.trim())
 	};
-
-	
-	useEffect ( () => {
-        if(inputEl.current){
-            window.addEventListener("resize", setInputWidth(inputEl.current.clientWidth));
-	    	return () => window.removeEventListener("resize", setInputWidth(inputEl.current.clientWidth));
-        }
-    });
 
 	const autocompleteLeft = `${(width-inputWidth)/2-8.1}px`;
 	const autocompleteWidth = `${inputWidth+2}px`;

@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import SearchBox from '../SearchBox/searchbox.js';
@@ -20,6 +20,11 @@ const Category = props => {
 		categoriesError 
 	} = useCategoryList()
 
+	const [userInput, setUserInput] = useState('');
+	const [searchInput, setSearchInput] = useState('');	
+	const [categories, setCategories] = useState([]);
+	const [loading, setLoading] = useState(false)
+
 	if(!categoryData || !categoryData.MpMageplazaFaqsCategoryList) {
 		return <Loader />;
 	}
@@ -27,11 +32,13 @@ const Category = props => {
 		return <Loader />;
 	}
 
-	const [userInput, setUserInput] = useState('');
-	const [searchInput, setSearchInput] = useState('');	
-	const [categories, setCategories] = useState(categoryData.MpMageplazaFaqsCategoryList.items)
-	const [loading, setLoading] = useState(false)
-
+	useEffect(() => {
+		async function fetchCategory() {
+			const data = await categoryData.MpMageplazaFaqsCategoryList.items
+			setCategories(data)
+		}
+		fetchCategory();
+	}, [])
 	const onChange = (e) => {
 		setUserInput(e.target.value)
 	}
@@ -52,7 +59,7 @@ const Category = props => {
 		<Fragment>
 			<Helmet>
                 <meta charSet="utf-8" />
-                <title>{categories[0].name} - Frequently Answer and Question</title>
+                <title>{categories.length ? categories[0].name : ''} - Frequently Answer and Question</title>
             </Helmet>
 			<SearchBox 
 				onChange={onChange}
