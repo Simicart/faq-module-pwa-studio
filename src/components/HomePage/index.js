@@ -8,6 +8,12 @@ import { useHomePage } from '@faq/faq/src/talons/useHomePage'
 import { useCategoryList } from '@faq/faq/src/talons/useCategoryList'
 
 const FAQ = props => {
+	if(!homepageData || !homepageData.MpMageplazaFaqsGetConfig) {
+		return <Loader />;
+	}
+	if(!categoriesData || !categoriesData.MpMageplazaFaqsCategoryList) {
+		return <Loader />;
+	}
 	const { 
 		homepageData, 
 		homepageLoading, 
@@ -24,13 +30,6 @@ const FAQ = props => {
 		categoriesError 
 	} = useCategoryList()
 	const categories = categoriesData.MpMageplazaFaqsCategoryList.items;
-
-	if(!homepageData || !homepageData.MpMageplazaFaqsGetConfig) {
-		return <Loader />;
-	}
-	if(!categoriesData || !categoriesData.MpMageplazaFaqsCategoryList) {
-		return <Loader />;
-	}
 
 	const [userInput, setUserInput] = useState('');
 	const [searchInput, setSearchInput] = useState('');	
