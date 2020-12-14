@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import Loader from '../Loader/Loader'
 import SearchBox from '../SearchBox/searchbox';
 import Container from './components/Container';
 import AdditionalInfo from './components/AdditionalInfo/AdditionalInfo'
@@ -37,19 +38,14 @@ const Article = props => {
 		articleLoading,
 		derivedErrorMessage
 	} = useArticle({url_key: articleUrl});
-	const data = articleData.MpMageplazaFaqsGetArticles.items[0]
-	//get articles' name and url
 	const { 
 		categoriesData,
 		categoriesLoading,
 		categoriesError 
 	} = useCategoryList()
-	const categories = categoriesData.MpMageplazaFaqsCategoryList.items;
 
-	let articles = [];
-	categories.map(category => {
-		return articles = articles.concat(category.articles.items)
-	})
+	const inputEl = useRef(null);
+	const [inputWidth, setInputWidth] = useState(0)
 
 	const [activeSuggestion, setActiveSuggestion] = useState(0);
 	const [filteredSuggestions, setFilteredSuggestions] = useState([]);
@@ -57,6 +53,24 @@ const Article = props => {
 	const [userInput, setUserInput] = useState('');
 	const [currentInput, setCurrentInput] = useState('');
 	const [isChanged, setIsChanged] = useState(true); //determine if the current input is changed or not
+
+	if(!articleData || !articleData.MpMageplazaFaqsGetArticles) {
+		return <Loader />;
+	}
+
+	if(!categoriesData || !categoriesData.MpMageplazaFaqsCategoryList) {
+		return <Loader />;
+	}
+
+	const data = articleData.MpMageplazaFaqsGetArticles.items[0]
+	
+	const categories = categoriesData.MpMageplazaFaqsCategoryList.items;
+
+	let articles = [];
+
+	categories.map(category => {
+		return articles = articles.concat(category.articles.items)
+	})
 
 	const onChange = event => {
 		setUserInput(event.target.value)
@@ -118,8 +132,6 @@ const Article = props => {
 	    setUserInput(e.currentTarget.innerText.trim())
 	};
 
-	const inputEl = useRef(null);
-	const [inputWidth, setInputWidth] = useState(0)
 	
 	useEffect ( () => {
         if(inputEl.current){

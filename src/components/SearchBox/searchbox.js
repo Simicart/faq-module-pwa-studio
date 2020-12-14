@@ -1,4 +1,5 @@
 import React, { forwardRef} from 'react';
+import Loader from '../Loader/Loader'
 import defaultClasses from './searchbox.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
@@ -18,6 +19,11 @@ const SearchBox = forwardRef((props, ref) => {
 		onChange,
 		onSearch
 	} = props
+
+	if(!searchboxData || !searchboxData.MpMageplazaFaqsGetConfig) {
+		return <Loader />;
+	}
+
 	const {
 		title,
 		description

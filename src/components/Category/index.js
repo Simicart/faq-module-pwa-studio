@@ -2,6 +2,7 @@ import React, { Fragment, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import SearchBox from '../SearchBox/searchbox.js';
+import Loader from '../Loader/Loader'
 import CategoriesList from '../FaqsListContainer/CategoriesList'
 import { useCategoryListUrl } from '@faq/faq/src/talons/useCategoryListUrl'
 import { useCategoryList } from '@faq/faq/src/talons/useCategoryList'
@@ -18,7 +19,14 @@ const Category = props => {
 		categoriesLoading,
 		categoriesError 
 	} = useCategoryList()
-	
+
+	if(!categoryData || !categoryData.MpMageplazaFaqsCategoryList) {
+		return <Loader />;
+	}
+	if(!categoriesData || !categoriesData.MpMageplazaFaqsCategoryList) {
+		return <Loader />;
+	}
+
 	const [userInput, setUserInput] = useState('');
 	const [searchInput, setSearchInput] = useState('');	
 	const [categories, setCategories] = useState(categoryData.MpMageplazaFaqsCategoryList.items)
