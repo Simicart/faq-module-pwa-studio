@@ -19,11 +19,15 @@ const Category = props => {
 		categoriesLoading,
 		categoriesError 
 	} = useCategoryList()
-
 	const [userInput, setUserInput] = useState('');
-	const [searchInput, setSearchInput] = useState('');	
+	const [searchInput, setSearchInput] = useState('');
 	const [categories, setCategories] = useState([]);
-	const [loading, setLoading] = useState(false)
+	const [loading, setLoading] = useState(false);
+
+	useEffect(() => {
+		const _category = categoryData.MpMageplazaFaqsCategoryList.items
+		setCategories(_category)	
+	}, [])
 
 	if(!categoryData || !categoryData.MpMageplazaFaqsCategoryList) {
 		return <Loader />;
@@ -32,13 +36,6 @@ const Category = props => {
 		return <Loader />;
 	}
 
-	useEffect(() => {
-		async function fetchCategory() {
-			const data = await categoryData.MpMageplazaFaqsCategoryList.items
-			setCategories(data)
-		}
-		fetchCategory();
-	}, [])
 	const onChange = (e) => {
 		setUserInput(e.target.value)
 	}
@@ -54,7 +51,7 @@ const Category = props => {
 			setSearchInput(userInput)
 		}, 500)
 	}
-
+	
 	return (
 		<Fragment>
 			<Helmet>
