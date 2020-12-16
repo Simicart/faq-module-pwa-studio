@@ -10,7 +10,8 @@ const CategoriesList = props => {
 		categories,
 		searchInput,
 		column,
-		loading
+		loading,
+		reRender
 	} = props
 
 	let filterCategories = JSON.parse(JSON.stringify(categories))
@@ -36,6 +37,10 @@ const CategoriesList = props => {
 
 	if(count === filterCategories.length) {
 		categoryBlocks = <div>There is no FAQ match with your search.</div>
+	}
+
+	if(!reRender) {
+		categoryBlocks = <div></div>
 	}
 
 	return (

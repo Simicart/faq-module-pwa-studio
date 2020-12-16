@@ -51,7 +51,7 @@ const FAQ = props => {
 			setSearchInput(userInput)
 		}, 500)
 	}
-
+	const reRender = true
 	return (
 		<Fragment>
 			<Helmet>
@@ -68,6 +68,7 @@ const FAQ = props => {
 				column={category_column} 
 				categories={categories}
 				searchInput={searchInput}
+				reRender={reRender}
 			/>
 		</Fragment>
 	)

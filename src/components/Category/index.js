@@ -23,12 +23,16 @@ const Category = props => {
 	const [searchInput, setSearchInput] = useState('');
 	const [categories, setCategories] = useState([]);
 	const [loading, setLoading] = useState(false);
-
+	const [reRender, setReRender] = useState(false)
 	useEffect(() => {
-		const _category = categoryData.MpMageplazaFaqsCategoryList.items
-		setCategories(_category)	
-	}, [])
-
+		if(categoryData) {
+			const _category = categoryData.MpMageplazaFaqsCategoryList.items
+			setCategories(_category)
+		}	
+	}, [reRender])
+	useEffect(() => {
+		setTimeout(() => setReRender(true), 2000)
+	})
 	if(!categoryData || !categoryData.MpMageplazaFaqsCategoryList) {
 		return <Loader />;
 	}
@@ -66,7 +70,8 @@ const Category = props => {
 			<CategoriesList
 				loading={loading}
 				categories={categories}
-				searchInput={searchInput}/>
+				searchInput={searchInput}
+				reRender={reRender}/>
 		</Fragment>
 	)
 }
