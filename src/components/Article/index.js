@@ -68,7 +68,6 @@ const Article = props => {
 	if(!categoriesData || !categoriesData.MpMageplazaFaqsCategoryList) {
 		return <Loader />;
 	}
-
 	const data = articleData.MpMageplazaFaqsGetArticles.items[0]
 	
 	const categories = categoriesData.MpMageplazaFaqsCategoryList.items;
@@ -165,7 +164,7 @@ const Article = props => {
 				width={autocompleteWidth}
 			/>
 			<Container data={data}/>
-			<AdditionalInfo data={data}/>
+			<AdditionalInfo data={data} articleUrl={articleUrl}/>
 		</div>
 	)
 }

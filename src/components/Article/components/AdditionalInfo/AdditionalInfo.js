@@ -7,13 +7,14 @@ const AdditionalInfo = props => {
 	const classes = defaultClasses
 	const {
 		positives,
-		negatives
+		negatives,
+		article_id
 	} = props.data
 	return (
 		<div className={classes.container_additionalinfo}>
-			<Social />
+			<Social articleUrl={props.articleUrl}/>
 			<hr/>
-			<Rating positives={positives} negatives={negatives}/>
+			<Rating positives={positives} negatives={negatives} id={article_id}/>
 		</div>
 	)
 }
