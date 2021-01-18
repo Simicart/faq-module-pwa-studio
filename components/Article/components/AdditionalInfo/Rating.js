@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { ADD_HELPFUL } from '@faq/faq/src/talons/Faq.gql'
+import * as Icon from 'react-feather'
 import defaultClasses from './Rating.css'
 
 const Rating = props => {
@@ -132,6 +133,7 @@ const Rating = props => {
 					...messageStyle
 				}}
 			>
+				{!disable ? <Icon.Check className={classes['message-icon']}/> : <Icon.X className={classes['message-icon']} />} 
 				<div>
 					{!disable ? 'Thank for your vote!' : 'You have voted already!'}
 				</div>

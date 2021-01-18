@@ -75,12 +75,7 @@
     position: relative;
 }
 
-.message > *:first-child:before {
-    font-size: 24px;
-    line-height: 24px;
-    color: #006400;
-    content: '\e60e';
-    font-family: 'luma-icons';
+.message > *:first-child {
     margin: -12px 0 0;
     vertical-align: middle;
     display: inline-block;
@@ -88,7 +83,7 @@
     overflow: hidden;
     speak: none;
     left: 0;
-    top: 22px;
+    top: 50%;
     width: 45px;
     position: absolute;
     text-align: center;
