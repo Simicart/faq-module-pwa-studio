@@ -2,12 +2,12 @@
 
 This module acts as an add-on for [Mageplaza's FAQ extension](https://www.mageplaza.com/magento-2-faq-extension/) to make it work with Magento PWA Studio.
 
-End result: https://faq.pwa-commerce.com/
+End result: https://faq.pwa-commerce.com/faq.html
 
 ## Requirements
 
 - Magento version 2.4.* or >= 2.3.5
-- Got [Mageplaza Shop By Brand extension](https://www.mageplaza.com/magento-2-shop-by-brand/) and [FAQ GraphQL](https://github.com/mageplaza/magento-2-faqs-graphql) installed
+- Got [Mageplaza's FAQ extension](https://www.mageplaza.com/magento-2-faq-extension/) and [FAQ GraphQL](https://github.com/mageplaza/magento-2-faqs-graphql) installed
 
 ## Installation
 
